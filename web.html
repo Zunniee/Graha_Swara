@@ -1,11 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Indomie Clone</title>
+  <link rel="stylesheet" href="web.css" />
+  <script src="web.js" defer></script>
 </head>
 <body>
-    
+  <!-- Header -->
+  <header class="header">
+    <div class="logo">
+      <a href="#"><img src="img/logo.png" alt="Logo" /></a>
+    </div>
+    <button class="hamburger" id="hamburger">☰</button>
+    <nav class="menu" id="menu">
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#products">Products</a></li>
+        <li><a href="#recipes">Recipes</a></li>
+        <li><a href="#moments">Moments</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#minigame">Minigame</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Banner -->
+  <section class="banner">
+    <img src="img/banner-placeholder.jpg" alt="Banner" />
+  </section>
+
+  <!-- Products -->
+  <section id="products" class="products">
+    <h1>Our Products</h1>
+    <a href="#" class="btn">View All Products</a>
+    <div class="product-list">
+      <div class="product-item">
+        <img src="img/product-placeholder1.jpg" alt="Product 1" />
+        <p>Product Name 1</p>
+      </div>
+      <div class="product-item">
+        <img src="img/product-placeholder2.jpg" alt="Product 2" />
+        <p>Product Name 2</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Recipes -->
+  <section id="recipes" class="recipes">
+    <h1>Indomie Recipes</h1>
+    <p>Check out these creative recipes or add your own!</p>
+    <ul class="recipe-list">
+      <li>
+        <img src="img/recipe-placeholder1.jpg" alt="Recipe 1" />
+        <p>Recipe Name 1</p>
+      </li>
+      <li>
+        <img src="img/recipe-placeholder2.jpg" alt="Recipe 2" />
+        <p>Recipe Name 2</p>
+      </li>
+    </ul>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="about">
+      <h2>About</h2>
+      <p>This is a demo site inspired by the Indomie homepage. Customize this section with your own content.</p>
+    </div>
+    <div class="social">
+      <h2>Follow Us</h2>
+      <a href="#">Facebook</a>
+      <a href="#">Instagram</a>
+      <a href="#">Twitter</a>
+      <a href="#">YouTube</a>
+    </div>
+    <div class="copyright">
+      <p>&copy; 2025 YourBrand. All rights reserved.</p>
+    </div>
+  </footer>
 </body>
 </html>

@@ -1,0 +1,116 @@
+body {
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1em;
+  background-color: #d62828;
+  color: white;
+  position: relative;
+}
+
+.logo {
+  flex: 1;
+}
+
+.menu {
+  flex: 2;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.logo img {
+  height: 40px;
+}
+
+.hamburger {
+  font-size: 2rem;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  display: none;
+}
+
+.menu ul {
+  list-style: none;
+  display: flex;
+  gap: 1em;
+  padding: 0;
+  margin: 0;
+}
+
+.menu a {
+  color: white;
+  text-decoration: none;
+}
+
+.banner img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.products,
+.recipes,
+.footer {
+  padding: 2em;
+}
+
+.product-list,
+.recipe-list {
+  display: flex;
+  gap: 2em;
+  flex-wrap: wrap;
+}
+
+.product-item,
+.recipe-list li {
+  text-align: center;
+}
+
+.footer {
+  background: #222;
+  color: white;
+  padding: 2em;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.footer a {
+  color: #fff;
+  text-decoration: none;
+  display: block;
+  margin: 0.25em 0;
+}
+
+@media (max-width: 768px) {
+  .menu ul {
+  position: absolute;
+  top: 60px;
+  right: 0;
+  width: 200px;
+  flex-direction: column;
+  background: #d62828;
+  padding: 1em;
+  display: none;
+}
+
+  .menu ul.show {
+    display: flex;
+  }
+
+  .hamburger {
+    display: block;
+  }
+
+  .menu {
+    flex: 0 0 auto;
+  }
+}
