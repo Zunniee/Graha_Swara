@@ -1,12 +1,17 @@
 document.addEventListener('DOMContentLoaded', () => {
-  console.log('Script loaded. Customize this logic as needed!');
-});
+  fetch('layout.html')
+    .then(res => res.text())
+    .then(html => {
+      document.getElementById('layout').innerHTML = html;
 
-document.addEventListener('DOMContentLoaded', () => {
-  const menu = document.getElementById('menu').querySelector('ul');
-  const hamburger = document.getElementById('hamburger');
+      // Re-attach hamburger toggle after layout is loaded
+      const hamburger = document.getElementById('hamburger');
+      const menu = document.getElementById('menu')?.querySelector('ul');
 
-  hamburger.addEventListener('click', () => {
-    menu.classList.toggle('show');
-  });
+      if (hamburger && menu) {
+        hamburger.addEventListener('click', () => {
+          menu.classList.toggle('show');
+        });
+      }
+    });
 });
