@@ -1,6 +1,18 @@
-body {  font-family: sans-serif;  margin: 0;  padding: 0;}
+body {  
+  font-family: sans-serif;  
+  margin: 0;  
+  padding: 0;
+}
 
-.header {  display: flex;  justify-content: space-between;  align-items: center; padding: 0.2em;  background-color: #d62828;  color: white;  position: relative;}
+.header {  
+  display: flex;  
+  justify-content: space-between;  
+  align-items: center; 
+  padding: 0.2em;  
+  background-color: #d62828;  
+  color: white;  
+  position: relative;
+}
 
 .logo {
   flex: 1;
@@ -49,15 +61,13 @@ body {  font-family: sans-serif;  margin: 0;  padding: 0;}
   padding: 2em;
 }
 
-.product-list,
-.moment-list {
+.product-list, .moment-list {
   display: flex;
   gap: 2em;
   flex-wrap: wrap;
 }
 
-.product-item,
-.moment-list li {
+.product-item, .moment-list li {
   text-align: center;
 }
 
@@ -77,6 +87,59 @@ body {  font-family: sans-serif;  margin: 0;  padding: 0;}
   margin: 0.25em 0;
 }
 
+body {
+  font-family: sans-serif;  
+  margin: 0;  
+  padding: 0;
+}
+
+#layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+#layout header {
+  flex-shrink: 0;
+  background: #d62828;
+}
+
+.main-content {
+  flex-grow: 1;
+  padding: 2em;
+  background: #fff8f0;
+}
+
+#layout footer {
+  flex-shrink: 0;
+  background: #222;
+  color: white;
+  padding: 2em;
+  background: #222;
+}
+
+.about-layout {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2em;
+  flex-wrap: wrap; /* for responsiveness */
+  margin: 4em;
+}
+
+.about-logo {
+  flex: 0 0 45%;
+}
+
+.about-logo img {
+  width: 100%;
+  height: auto;
+}
+
+.about-text {
+  flex: 1;
+}
+
 @media (max-width: 768px) {
   .menu ul {
   position: absolute;
@@ -87,7 +150,7 @@ body {  font-family: sans-serif;  margin: 0;  padding: 0;}
   background: #d62828;
   padding: 1em;
   display: none;
-}
+  }
 
   .menu ul.show {
     display: flex;
@@ -99,5 +162,21 @@ body {  font-family: sans-serif;  margin: 0;  padding: 0;}
 
   .menu {
     flex: 0 0 auto;
+  }
+
+.about-layout {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .about-logo {
+    flex: 0 0 auto;
+    width: 80%;
+  }
+
+  .about-text {
+    width: 100%;
+    padding-top: 1em;
   }
 }
