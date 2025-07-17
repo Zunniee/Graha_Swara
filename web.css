@@ -1,0 +1,207 @@
+body {  
+  font-family: sans-serif;  
+  margin: 0;  
+  padding: 0;
+}
+
+.header {  
+  display: flex;  
+  justify-content: space-between;  
+  align-items: center; 
+  padding: 0.4em 1.3em;
+  background-color: #d62828;  
+  color: white;  
+  position: relative;
+}
+
+.logo {
+  flex: 1;
+}
+
+.menu {
+  font-weight: 700;
+  flex: 2;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.logo img {
+  height: 80px;
+}
+
+.hamburger {
+  font-size: 2rem;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  display: none;
+}
+
+.menu ul {
+  list-style: none;
+  display: flex;
+  gap: 1em;
+  padding: 0;
+  margin: 0;
+}
+
+.menu a {
+  color: white;
+  text-decoration: none;
+}
+
+.banner img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.products, .moments, .footer {
+  padding: 2em;
+}
+
+.product-list, .moment-list {
+  display: flex;
+  gap: 2em;
+  flex-wrap: wrap;
+}
+
+.product-item, .moment-list li {
+  text-align: center;
+}
+
+.footer {
+  background: #222;
+  color: white;
+  padding: 2em;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.footer a {
+  color: #fff;
+  text-decoration: none;
+  display: block;
+  margin: 0.25em 0;
+}
+
+#layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+#layout header {
+  flex-shrink: 0;
+  background: #d62828;
+}
+
+.main-content {
+  flex-grow: 1;
+  padding: 2em;
+  background: #fff8f0;
+}
+
+#layout footer {
+  flex-shrink: 0;
+  background: #222;
+  color: white;
+  padding: 2em;
+  background: #222;
+}
+
+.about-layout {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2em;
+  flex-wrap: wrap; /* for responsiveness */
+  margin: 4em;
+}
+
+.about-logo {
+  flex: 0 0 45%;
+}
+
+.about-logo img {
+  width: 100%;
+  height: auto;
+}
+
+.about-text {
+  flex: 1;
+}
+
+.image-stack {
+  position: relative;
+  width: 70vw;           /* Responsive width: 60% of viewport width */
+  aspect-ratio: 1 / 1;   /* Keeps square shape (adjust if images aren't square) */
+  margin: 3em auto 0;    /* 3em margin from header, auto center horizontally */
+}
+
+.image-stack img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%; /* scale image to container */
+  height: auto;
+}
+
+.filler {
+  z-index: 1;
+}
+.bumi {
+  z-index: 2;
+}
+.tongkonan {
+  z-index: 3;
+}
+.teks {
+  z-index: 4;
+}
+.joglo {
+  z-index: 5;
+}
+.honai {
+  z-index: 6;
+}
+@media (max-width: 768px) {
+  .menu ul {
+  position: absolute;
+  top: 60px;
+  right: 0;
+  width: 200px;
+  flex-direction: column;
+  background: #d62828;
+  padding: 1em;
+  display: none;
+  }
+
+  .menu ul.show {
+    display: flex;
+  }
+
+  .hamburger {
+    display: block;
+  }
+
+  .menu {
+    flex: 0 0 auto;
+  }
+
+  .about-layout {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .about-logo {
+    flex: 0 0 auto;
+  }
+
+  .about-text {
+    padding-top: 1em;
+  }
+}
