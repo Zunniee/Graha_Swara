@@ -3,6 +3,8 @@ body {
   margin: 0;  
   padding: 0;
   color: black;
+  overscroll-behavior-y: none;
+  overscroll-behavior-x: none;
 }
 
 .header {  
@@ -135,16 +137,16 @@ body {
 
 .image-stack {
   position: relative;
-  width: 70vw;           /* Responsive width: 60% of viewport width */
-  aspect-ratio: 1 / 1;   /* Keeps square shape (adjust if images aren't square) */
-  margin: 3em auto 0;    /* 3em margin from header, auto center horizontally */
+  width: 70vw;          
+  aspect-ratio: 1 / 1;   
+  margin: 3em auto 0;   
 }
 
 .image-stack img {
   position: absolute;
   top: -300px;
   left: 0;
-  width: 100%; /* scale image to container */
+  width: 100%; 
   height: auto;
 }
 
