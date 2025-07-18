@@ -2,6 +2,7 @@ body {
   font-family: sans-serif;  
   margin: 0;  
   padding: 0;
+  color: black;
 }
 
 .header {  
@@ -10,8 +11,9 @@ body {
   align-items: center; 
   padding: 0.4em 1.3em;
   background-color: #d62828;  
-  color: white;  
+  color: rgb(0, 0, 0);  
   position: relative;
+  height: 100;
 }
 
 .logo {
@@ -33,7 +35,7 @@ body {
   font-size: 2rem;
   background: none;
   border: none;
-  color: white;
+  color: rgb(0, 0, 0);
   cursor: pointer;
   display: none;
 }
@@ -101,7 +103,7 @@ body {
 .main-content {
   flex-grow: 1;
   padding: 2em;
-  background: #fff8f0;
+  background: #000000;
 }
 
 #layout footer {
@@ -152,21 +154,41 @@ body {
 .filler {
   z-index: 1;
 }
+
 .bumi {
   z-index: 2;
+  opacity: 0;
+  animation: fadeIn 2s ease-in-out forwards;
 }
+
 .tongkonan {
   z-index: 3;
+    opacity: 0;
+  animation: fadeIn 2s ease-in-out forwards;
 }
 .teks {
   z-index: 4;
+    opacity: 0;
+  animation: fadeIn 2s ease-in-out forwards;
 }
 .joglo {
   z-index: 5;
+  opacity: 0;
+  animation: fadeIn 2s ease-in-out forwards;
 }
+
 .honai {
   z-index: 6;
+  opacity: 0;
+  animation: fadeIn 2s ease-in-out forwards;
 }
+
+@keyframes fadeIn {
+  to{
+    opacity: 1;
+  }
+}
+
 @media (max-width: 768px) {
   .menu ul {
   position: absolute;
@@ -174,7 +196,7 @@ body {
   right: 0;
   width: 200px;
   flex-direction: column;
-  background: #d62828;
+  background: #ffffff;
   padding: 1em;
   display: none;
   }
