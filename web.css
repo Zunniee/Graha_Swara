@@ -2,9 +2,6 @@ body {
   font-family: sans-serif;  
   margin: 0;  
   padding: 0;
-  color: black;
-  overscroll-behavior-y: none;
-  overscroll-behavior-x: none;
 }
 
 .header {
@@ -46,7 +43,7 @@ body {
   font-size: 2rem;
   background: none;
   border: none;
-  color: rgb(0, 0, 0);
+  color: white;
   cursor: pointer;
   display: none;
 }
@@ -61,7 +58,6 @@ body {
 
 .menu a {
   color: white;
-  word-spacing: 30px;
   text-decoration: none;
 }
 
@@ -148,6 +144,9 @@ body {
   height: auto;
 }
 
+.about-text {
+  flex: 1;
+}
 
 .image-stack {
   position: relative;
@@ -158,7 +157,7 @@ body {
 
 .image-stack img {
   position: absolute;
-  top: -300px;
+  top: 0;
   left: 0;
   width: 100%;
   height: 100%;
@@ -274,7 +273,6 @@ body {
 
 
 .bumi {
-  opacity: 0;
   animation: spinZoomFadeIn 2s ease-out both;
   z-index: 2;
 }
@@ -287,6 +285,7 @@ body {
 
 .filler {
   opacity: 0;
+  transform-origin: center; /* spreads from center */
   animation: spreadFadeIn 1.5s ease-out 1s both;
   z-index: 1;
 }
@@ -323,7 +322,7 @@ body {
   left: 0;
   gap: 0.5em;
   flex-direction: column;
-  background: #ffffff;
+  background: #d62828;
   padding: 1em;
   display: none;
   }
