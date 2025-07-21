@@ -1,0 +1,143 @@
+@keyframes spinZoomFadeIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.5) rotate(-45deg);
+  }
+  40% {
+    opacity: 1;
+    transform: scale(1.1) rotate(10deg);
+  }
+  73% {
+    transform: scale(0.98); /* bounce-back */
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes zoomOutFadeIn {
+  0% {
+    opacity: 0;
+    transform: scale(1.8);
+  }
+  45% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+  70% {
+    transform: scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+}
+@keyframes spreadFadeIn {
+  0% {
+    opacity: 0;
+    transform: scaleX(0.2);
+  }
+  50% {
+    opacity: 1;
+    transform: scaleX(1.1); /* overshoot */
+  }
+  70% {
+    transform: scaleX(0.98); /* bounce-back */
+  }
+  100% {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+}
+
+@keyframes upLeftFadeIn {
+  0% {
+    opacity: 0;
+    transform: translate(50px, 50px);
+  }
+  60% {
+    opacity: 1;
+    transform: translate(-5px, -5px); /* overshoot */
+  }
+  80% {
+    transform: translate(2px, 2px);   /* bounce-back */
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes rightFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateX(-60px);
+  }
+  60% {
+    opacity: 1;
+    transform: translateX(10px); /* overshoot */
+  }
+  80% {
+    transform: translateX(-3px); /* bounce-back */
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes downLeftFadeIn {
+  0% {
+    opacity: 0;
+    transform: translate(50px, -50px);
+  }
+  60% {
+    opacity: 1;
+    transform: translate(-5px, 5px); /* overshoot */
+  }
+  80% {
+    transform: translate(2px, -2px); /* bounce-back */
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+}
+
+
+.bumi {
+  animation: spinZoomFadeIn 2s ease-out both;
+  z-index: 2;
+}
+
+.teks {
+  opacity: 0;
+  animation: zoomOutFadeIn 2s ease-out 0.1s both; /* single declaration */
+  z-index: 4;
+}
+
+.filler {
+  opacity: 0;
+  transform-origin: center; /* spreads from center */
+  animation: spreadFadeIn 1.5s ease-out 1s both;
+  z-index: 1;
+}
+
+.joglo {
+  opacity: 0;
+  animation: upLeftFadeIn 1.5s ease-out 1.3s both;
+  z-index: 5;
+}
+
+.honai {
+  opacity: 0;
+  animation: rightFadeIn 1.5s ease-out 1.5s both;
+  z-index: 6;
+}
+
+.tongkonan {
+  opacity: 0;
+  animation: downLeftFadeIn 1.5s ease-out 1.7s both;
+  z-index: 3;
+}
