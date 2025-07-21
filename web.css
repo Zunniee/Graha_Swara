@@ -4,14 +4,24 @@ body {
   padding: 0;
 }
 
-.header {  
-  display: flex;  
-  justify-content: space-between;  
-  align-items: center; 
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+  background-color: #d62828;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   padding: 0.4em 1.3em;
-  background-color: #d62828;  
-  color: white;  
-  position: relative;
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Hidden state */
+.header.hide {
+  transform: translateY(-100%);
 }
 
 .logo {
@@ -58,7 +68,7 @@ body {
 }
 
 .products, .moments, .footer {
-  padding: 2em;
+  margin-top: 1em;
 }
 
 .product-list, .moment-list {
@@ -101,8 +111,12 @@ body {
 .main-content {
   flex-grow: 1;
   padding: 2em;
-  background: #fff8f0;
+  background: #432502;
 }
+
+/*
+#4a2802
+*/
 
 #layout footer {
   flex-shrink: 0;
@@ -136,43 +150,177 @@ body {
 
 .image-stack {
   position: relative;
-  width: 70vw;           /* Responsive width: 60% of viewport width */
-  aspect-ratio: 1 / 1;   /* Keeps square shape (adjust if images aren't square) */
-  margin: 3em auto 0;    /* 3em margin from header, auto center horizontally */
+  width: 70vw;
+  aspect-ratio: 3 / 4;
+  margin: -20vh auto 0;
 }
 
 .image-stack img {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%; /* scale image to container */
-  height: auto;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@keyframes spinZoomFadeIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.5) rotate(-45deg);
+  }
+  40% {
+    opacity: 1;
+    transform: scale(1.1) rotate(10deg);
+  }
+  73% {
+    transform: scale(0.98); /* bounce-back */
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes zoomOutFadeIn {
+  0% {
+    opacity: 0;
+    transform: scale(1.8);
+  }
+  45% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+  70% {
+    transform: scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+}
+@keyframes spreadFadeIn {
+  0% {
+    opacity: 0;
+    transform: scaleX(0.2);
+  }
+  50% {
+    opacity: 1;
+    transform: scaleX(1.1); /* overshoot */
+  }
+  70% {
+    transform: scaleX(0.98); /* bounce-back */
+  }
+  100% {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+}
+
+@keyframes upLeftFadeIn {
+  0% {
+    opacity: 0;
+    transform: translate(50px, 50px);
+  }
+  60% {
+    opacity: 1;
+    transform: translate(-5px, -5px); /* overshoot */
+  }
+  80% {
+    transform: translate(2px, 2px);   /* bounce-back */
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes rightFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateX(-60px);
+  }
+  60% {
+    opacity: 1;
+    transform: translateX(10px); /* overshoot */
+  }
+  80% {
+    transform: translateX(-3px); /* bounce-back */
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes downLeftFadeIn {
+  0% {
+    opacity: 0;
+    transform: translate(50px, -50px);
+  }
+  60% {
+    opacity: 1;
+    transform: translate(-5px, 5px); /* overshoot */
+  }
+  80% {
+    transform: translate(2px, -2px); /* bounce-back */
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+}
+
+
+.bumi {
+  animation: spinZoomFadeIn 2s ease-out both;
+  z-index: 2;
+}
+
+.teks {
+  opacity: 0;
+  animation: zoomOutFadeIn 2s ease-out 0.1s both; /* single declaration */
+  z-index: 4;
 }
 
 .filler {
+  opacity: 0;
+  transform-origin: center; /* spreads from center */
+  animation: spreadFadeIn 1.5s ease-out 1s both;
   z-index: 1;
 }
-.bumi {
-  z-index: 2;
-}
-.tongkonan {
-  z-index: 3;
-}
-.teks {
-  z-index: 4;
-}
+
 .joglo {
+  opacity: 0;
+  animation: upLeftFadeIn 1.5s ease-out 1.3s both;
   z-index: 5;
 }
+
 .honai {
+  opacity: 0;
+  animation: rightFadeIn 1.5s ease-out 1.5s both;
   z-index: 6;
 }
+
+.tongkonan {
+  opacity: 0;
+  animation: downLeftFadeIn 1.5s ease-out 1.7s both;
+  z-index: 3;
+}
+
+@media (max-width: 1024px) {
+  .image-stack {
+    margin: -5vh auto 0;
+  }
+}
+
 @media (max-width: 768px) {
   .menu ul {
   position: absolute;
-  top: 60px;
+  top: 100%;
   right: 0;
-  width: 200px;
+  left: 0;
+  gap: 0.5em;
   flex-direction: column;
   background: #d62828;
   padding: 1em;
@@ -189,6 +337,11 @@ body {
 
   .menu {
     flex: 0 0 auto;
+  }
+
+  .image-stack {
+    margin: 0 auto -10vh;
+    width: 85vw;
   }
 
   .about-layout {
