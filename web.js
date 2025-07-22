@@ -17,22 +17,31 @@ document.addEventListener('DOMContentLoaded', () => {
 
       requestAnimationFrame(() => {
         const hamburger = document.getElementById('hamburger');
-        const menu = document.getElementById('menu')?.querySelector('ul');
+        const menuWrapper = document.getElementById('menu'); 
+        const menuList = menuWrapper?.querySelector('ul');  
 
         const applyMenuLayout = () => {
-          if (!menu) return;
+          if (!menuWrapper) return;
+
           if (window.innerWidth < 768) {
-            menu.classList.remove('show');
+            menuWrapper.classList.remove('show');
+            document.body.classList.remove('no-scroll');
+            hamburger.classList.remove('is-active');
           } else {
-            menu.classList.add('show');
+            // Force show menu on desktop
+            menuWrapper.classList.add('show');
+            document.body.classList.remove('no-scroll');
+            hamburger.classList.remove('is-active');
           }
         };
 
         applyMenuLayout(); // Run on load
 
-        if (hamburger && menu) {
+        if (hamburger && menuWrapper) {
           hamburger.addEventListener('click', () => {
-            menu.classList.toggle('show');
+            const isOpen = menuWrapper.classList.toggle('show');
+            hamburger.classList.toggle('is-active');
+            document.body.classList.toggle('no-scroll', isOpen);
           });
 
           window.addEventListener('resize', applyMenuLayout);
@@ -42,6 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const headerEl = document.querySelector('header');
         if (headerEl) {
           window.addEventListener('scroll', () => {
+            if (document.getElementById('menu')?.classList.contains('show')) return;
             const currentScrollY = window.scrollY;
             if (currentScrollY > lastScrollY && currentScrollY > 50) {
               headerEl.classList.add('hide');
@@ -51,6 +61,14 @@ document.addEventListener('DOMContentLoaded', () => {
             lastScrollY = currentScrollY;
           });
         }
+
+        document.querySelectorAll('.menu a').forEach(link => {
+          link.addEventListener('click', () => {
+            menuWrapper.classList.remove('show');
+            hamburger.classList.remove('is-active');
+            document.body.classList.remove('no-scroll');
+          });
+        });
       });
     });
 });

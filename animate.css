@@ -141,3 +141,29 @@
   animation: downLeftFadeIn 1.5s ease-out 1.7s both;
   z-index: 3;
 }
+
+@keyframes fadeInMenu {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.menu.show ul {
+  animation: fadeInMenu 0.4s ease forwards;
+}
+
+.menu {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+}
+
+.menu.show {
+  opacity: 1;
+  pointer-events: auto;
+}
