@@ -1,3 +1,4 @@
+/*banner*/
 @keyframes spinZoomFadeIn {
   0% {
     opacity: 0;
@@ -142,6 +143,7 @@
   z-index: 3;
 }
 
+/*menu*/
 @keyframes fadeInMenu {
   0% {
     opacity: 0;
@@ -157,13 +159,84 @@
   animation: fadeInMenu 0.4s ease forwards;
 }
 
-.menu {
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.5s ease;
+/*moment*/
+@keyframes fadeIn {
+  to{
+    opacity: 1;
+  }
 }
 
-.menu.show {
-  opacity: 1;
-  pointer-events: auto;
+.moment-text{
+  flex: 1;
+  color: #7D0A0A;
+  font-size: 18px;
+  word-spacing: 5px;
+  text-align: center;
+  padding-top: 20px;
+  opacity: 0;
+  animation: fadeIn 2s ease-in-out forwards;
+}
+
+/*about*/
+.about-logo {
+  flex: 0 0 auto;
+  flex: 0 0 45%;
+  transform: translateX(-50px);
+  opacity: 0;
+  animation: slideIn 2s ease forwards;
+  }
+
+  .about-text {
+  flex: 1;
+  font-size: 18px;
+  word-spacing: 5px;
+  transform: translateX(50px);
+  opacity: 0;
+  animation: slideIn 2s ease forwards;
+}
+  
+/*footer*/
+@keyframes slideIn {
+  to {
+    transform: translateX(0);
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.about{
+  opacity: 0;
+  transform: translateX(-50px);
+  animation: slideIn 2s ease forwards;
+  
+}
+.copyright{
+  opacity: 0;
+  transform: translateX(50px);
+  animation: slideIn 2s ease forwards;
+}
+.social{
+  opacity: 0;
+  transform: translateY(50px);
+  animation: slideIn 2s ease forwards;
+}
+
+@media (max-width: 768px) {
+  .about-logo {
+    flex: 0 0 auto;
+    flex: 0 0 45%;
+    transform: translateY(-50px);
+    opacity: 0;
+    animation: slideIn 2s ease forwards;
+  }
+
+  .about-text {
+    flex: 1;
+    color: wheat;
+    font-size: 18px;
+    word-spacing: 5px;
+    transform: translateY(50px);
+    opacity: 0;
+    animation: slideIn 2s ease forwards;
+  }
 }
