@@ -208,7 +208,7 @@ body.loaded #preloader {
   background-size: 150%;
   display: flex;
   width: 100vw;
-  z-index: 10;
+  z-index: 100;
 }
 
 .image-stack {
