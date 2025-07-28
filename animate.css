@@ -309,8 +309,11 @@ body.loaded .tongkonan {
    margin-top: -20px;
   }
   .mainhome-content{
-    background-position-y: -600px;
-    background-position-x: -350px ;
+    min-height: 100vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position-y: 0;
+    background-position-x: -90px;
   }
   .product-item img, moment-item img{
     width: 100%;
@@ -329,5 +332,11 @@ body.loaded .tongkonan {
     width: 100%;
     max-width: 300px;
     margin-top: 30px;
+  }
+  .image-stack{
+    margin:   40px auto 0;
+  }
+  .products{
+    margin-top: 200px;
   }
 }
