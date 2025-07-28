@@ -315,11 +315,13 @@ body.loaded .tongkonan {
     background-position-y: 0;
     background-position-x: -90px;
   }
-  .product-item img, moment-item img{
+ 
+  .product-item img{
     width: 100%;
-    max-width: 300px;
+    max-width: 250px;
     height: 100%;
     max-height: 200px ;
+    margin-right: 20px;
   }
   .mainproduct-content{
     height: 100%;
@@ -338,5 +340,23 @@ body.loaded .tongkonan {
   }
   .products{
     margin-top: 200px;
+  }
+  .moment-item img{
+    width: 100%;
+    max-width: 300px;
+    margin-left: 28px;
+  }
+  .logo{
+    margin: 0 ;
+  }
+  .about-layout{
+    background-size: cover;
+    background-position: right;
+  }
+  .about p{
+    width: 450px;
+  }
+  .social{
+    margin-left: -36px;
   }
 }
