@@ -303,10 +303,10 @@ body.loaded #preloader {
 .about-layout {
   display: flex;
   background-image: url(assets/background-moment.png);
+  background-size: cover;
   height: 100%;
   min-height: 562px;
   text-align: left;
-  background-size: cover;
   background-repeat: no-repeat;
   align-items: center;
   overflow: hidden;
@@ -420,7 +420,7 @@ body.loaded #preloader {
 .mainproduct-content {
   flex: 1;
   overflow: hidden;
-  background-image: url(assets/background-about.png);
+  background-image: url(assets/background-products.png);
   background-size: cover;
   height: 100%;
   min-height: 800px;
@@ -570,7 +570,7 @@ body.loaded #preloader {
 
 .mainmoment-content {
   flex: 1;
-  background-image: url(assets/background-product.png);
+  background-image: url(assets/background-moment1.png);
   background-size: cover;
   color: #7D0A0A;
   height: 100%;
@@ -793,6 +793,8 @@ body.loaded #preloader {
     flex-direction: column;
     opacity: 0;
     pointer-events: none;
+    font-family: 'Playfair Display', serif;
+  font-size: 3rem;
     transition: opacity 0.5s ease;
   }
   
