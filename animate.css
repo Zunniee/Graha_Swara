@@ -324,6 +324,8 @@ body.loaded .tongkonan {
     margin-right: 20px;
   }
   .mainproduct-content{
+    background-image: url(assets/background-product-mobile.png);
+    background-position-x: -30px;
     height: 100%;
     min-height: 800px;
   }
