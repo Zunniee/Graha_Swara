@@ -727,6 +727,7 @@ body.loaded #preloader {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  margin-left: 1em;
 }
 .social h2{
   word-spacing: 1.5px;

@@ -427,4 +427,8 @@ body.loaded .tongkonan {
   .footer-top{
     flex-direction: column;
   }
+
+  .social{
+    margin-left: 0;
+  }
 }
