@@ -19,6 +19,7 @@ html, body {
   background-size: cover;
   z-index: 1;
   scroll-behavior: smooth;
+  background-color: #ffcca9;
 }
 html,body, #layout{
   overflow-x: hidden;
@@ -264,7 +265,12 @@ body.loaded #preloader {
 }
 
 .product-item img {
+  display: block;
   width: 100%;
+  max-width: 480px;
+  margin-left:420px ;
+  margin-right: auto;
+  justify-content: center;
   max-height: 280px; /* fixed height */
   height: auto;
   object-fit: cover;
