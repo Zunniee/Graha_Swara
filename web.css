@@ -8,7 +8,7 @@
 
 html, body {
   width: 100%;
-  overflow-x: hidden;
+  overflow-x: hidden; 
   overscroll-behavior-y: none;
   margin: 0;
   padding: 0;
@@ -21,16 +21,16 @@ html, body {
   scroll-behavior: smooth;
   background-color: #ffcca9;
 }
-html,body, #layout{
+/* html,body, #layout{
   overflow-x: hidden;
-}
+} */
 .body{
   max-width: 100%;
 }
 /* Prevent double scrollbar during loading */
-body:not(.loaded) {
+/* body:not(.loaded) {
   overflow: hidden;
-}
+} */
 
 /* Show preloader by default with hardware acceleration */
 #preloader {
@@ -73,6 +73,7 @@ body.loaded #preloader {
 }
 
 .header {
+  width: 100vw;
   position: fixed;
   top: 0;
   left: 0;
@@ -200,7 +201,6 @@ body.loaded #preloader {
 /*homepage.html start*/
 .homepage-main-content {
   flex-grow: 1;
-  width: 100%;
   padding: 2em;
 }
 
@@ -232,6 +232,7 @@ body.loaded #preloader {
 
 /* Optimized scrolling with hardware acceleration */
 .product-list, .moment-list {
+  justify-content: center;
   display: flex;
   overflow-x: visible;
   scroll-snap-type: x mandatory;
@@ -253,7 +254,6 @@ body.loaded #preloader {
 }
 
 .product-item {
-  flex: 0 0 auto;
   scroll-snap-align: start;
   will-change: transform;
   /* Prevent text selection during dragging */
@@ -268,8 +268,6 @@ body.loaded #preloader {
   display: block;
   width: 100%;
   max-width: 480px;
-  margin-left:420px ;
-  margin-right: auto;
   justify-content: center;
   max-height: 280px; /* fixed height */
   height: auto;
@@ -315,7 +313,7 @@ body.loaded #preloader {
   text-align: left;
   background-repeat: no-repeat;
   align-items: center;
-  overflow: hidden;
+  /* overflow: hidden; */
   flex-wrap: wrap; /* for responsiveness */
 }
 
@@ -345,9 +343,7 @@ body.loaded #preloader {
   font-size: 36px;
 }
 .about-text p{
-  font-weight: 550;
   text-decoration: solid;
-  text-decoration-color: blue ;
 }
 
 
@@ -661,14 +657,15 @@ body.loaded #preloader {
 
 .footer-top {
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
-  flex-wrap: wrap;
 }
 
-.footer .about,
-.footer .social {
+.footer .about{
+  flex: 2;
+}
+.footer .social{
   flex: 1;
-  min-width: 600px;
 }
 
 .footer .copyright {
@@ -681,7 +678,7 @@ body.loaded #preloader {
 .icon {
   width: 40px;
   height: 40px;
-  margin-left: 30px ;
+  /* margin-left: 30px ; */
   border-radius: 50%;
   cursor: pointer;
   background-color: #fff;
@@ -729,24 +726,24 @@ body.loaded #preloader {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin-left: 60px; /* or center if you want centered layout */
 }
 .social h2{
-  margin-left: 31px;
   word-spacing: 1.5px;
   letter-spacing: 2px;
 }
 .icon-wrapper {
   margin-top: 0.5em;
   display: flex;
-  gap: 1em; /* spacing between icons */
+  justify-content: space-between;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 .about h2{
   letter-spacing: 2px;
 }
-
-
-
+.about p{
+  max-width: 100%;
+}
 .carousel-section {
   margin-top: 3rem;
   margin-bottom: 6rem;
@@ -847,7 +844,7 @@ body.loaded #preloader {
   body.no-scroll {
     position: fixed;
     width: 100%;
-    overflow: hidden;
+    /* overflow: hidden; */
     touch-action: none;
   }
   .footer{
