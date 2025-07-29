@@ -552,21 +552,11 @@ body.loaded #preloader {
 
 
 /*moment.html start*/
-.moment-pic {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 2em;
-  margin-top: 60px;
-  text-align: center;
-}
+
 .moment-text{
   margin-top: 30px;
 }
-.moment-pic img {
-  width: 100%;
-  max-width: 500px;
-}
+
 
 .mainmoment-content {
   flex: 1;
@@ -574,7 +564,7 @@ body.loaded #preloader {
   background-size: cover;
   color: #7D0A0A;
   height: 100%;
-  min-height: 1000px;
+  min-height: 700px;
   font-size: 18px;
   word-spacing: 5px;
 }
@@ -588,14 +578,7 @@ body.loaded #preloader {
   background-position: center;
   background-position-y: -10px ;
 }
-.main-moment img {
-  width: 100%;
-  max-width: 500px;
-  height: auto;
-  border-radius: 10px;
-  display: block;
-  margin: auto;
-}
+
 
 
 
@@ -678,7 +661,7 @@ body.loaded #preloader {
 .footer .about,
 .footer .social {
   flex: 1;
-  min-width: 500px;
+  min-width: 600px;
 }
 
 .footer .copyright {
@@ -754,6 +737,103 @@ body.loaded #preloader {
 .about h2{
   letter-spacing: 2px;
 }
+
+
+
+.carousel-section {
+  height: 100%;
+  max-height: 600px;
+  margin-top: 3rem;
+  margin-bottom: 6rem;
+}
+
+.moment-carouselwrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  max-width: 100vw;
+  box-sizing: border-box;
+}
+
+.moment-carousel {
+  overflow: hidden;
+  width: 100%;
+  max-width: 900px;
+  position: relative;
+  padding: 2rem;
+}
+
+.moment-carousel-track {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  /* No default transition */
+}
+
+.moment-carousel-track.animate {
+  transition: transform 0.5s ease-in-out;
+}
+
+.main-moment {
+  flex: 0 0 300px;
+  opacity: 0.5;
+  transform: scale(0.8);
+  transition: opacity 0.3s ease, transform 0.2s ease;
+  z-index: 1;
+  pointer-events: none;
+  position: relative;
+}
+
+.main-moment.active {
+  opacity: 1;
+  transform: scale(1.3);
+  pointer-events: auto;
+  z-index: 3;
+}
+
+.main-moment img {
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  object-fit: contain;
+  border-radius: 10px;
+  display: block;
+}
+
+.nav-btn {
+  position: absolute;
+  background-color: #f5814b;
+  color: white;
+  border: #ac400f solid;
+  border-radius: 30px;
+  padding: 10px 17px;
+  font-size: 18px;
+  cursor: pointer;
+  z-index: 10;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.nav-btn:hover {
+  background-color: #d46835;
+}
+#prev {
+  left: 110px;
+}
+#next {
+  right: 100px;
+}
+
+
+
+
+
+
+
+
+
 
 
 

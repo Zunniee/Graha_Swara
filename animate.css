@@ -361,4 +361,69 @@ body.loaded .tongkonan {
   .social{
     margin-left: -36px;
   }
+
+
+
+  .moment-carouselwrapper {
+    max-width: 100vw;
+    min-height: 300px;
+    overflow: visible;
+    box-sizing: border-box;
+  }
+  .carousel-section{
+    margin-top: 0;
+    margin-bottom: 1rem;
+    padding-right: 2rem;
+  }
+  .moment-carousel {
+    width: 100%;  
+    padding: 1rem 1rem;
+    flex: 0 0 500px;
+  }
+.moment-carousel-track{
+  width: 100%;
+  max-width: 400px;
+  gap: 0;
+}
+  .main-moment {
+    flex: 0 0 180px; 
+    opacity: 0.5;
+    transform: scale(0.7);
+  }
+
+  .main-moment.active {
+    transform: scale(1.4); /* Slightly smaller scale on mobile for better fit */
+    opacity: 1;
+    pointer-events: auto;
+    z-index: 3;
+  }
+
+  .main-moment.left,
+  .main-moment.right {
+    opacity: 0.6;
+    z-index: 2;
+  }
+
+  .main-moment img{
+    width: 100%;
+    max-width: 500px;
+    max-height: 400px;
+    height: auto;
+    border-radius: 15px;
+    object-fit: contain;
+  }
+
+  .nav-btn {
+    padding: 8px 15px;
+    font-size: 16px;
+    top: 90%;
+  }
+
+  #prev {
+    left: 100px;
+  }
+
+  #next {
+    right: 100px;
+  }
 }
