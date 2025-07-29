@@ -53,7 +53,7 @@ body:not(.loaded) {
   width: 50px;
   height: 50px;
   border: 6px solid white;
-  border-top: 6px solid #6e2c00;
+  border-top: 6px solid #f5814b;
   border-radius: 50%;
   animation: spin 1s linear infinite;
   will-change: transform;
@@ -419,7 +419,7 @@ body.loaded #preloader {
 }
 .mainproduct-content {
   flex: 1;
-  overflow: hidden;
+  overflow: visible;
   background-image: url(assets/background-products.png);
   background-size: cover;
   height: 100%;
@@ -560,6 +560,7 @@ body.loaded #preloader {
 
 .mainmoment-content {
   flex: 1;
+  overflow: visible;
   background-image: url(assets/background-moment1.png);
   background-size: cover;
   color: #7D0A0A;
@@ -741,8 +742,6 @@ body.loaded #preloader {
 
 
 .carousel-section {
-  height: 100%;
-  max-height: 600px;
   margin-top: 3rem;
   margin-bottom: 6rem;
 }
@@ -777,7 +776,7 @@ body.loaded #preloader {
   transition: transform 0.5s ease-in-out;
 }
 
-.main-moment {
+.moment-slide {
   flex: 0 0 300px;
   opacity: 0.5;
   transform: scale(0.8);
@@ -787,14 +786,14 @@ body.loaded #preloader {
   position: relative;
 }
 
-.main-moment.active {
+.moment-slide.active {
   opacity: 1;
   transform: scale(1.3);
   pointer-events: auto;
   z-index: 3;
 }
 
-.main-moment img {
+.moment-slide img {
   width: 100%;
   max-width: 500px;
   height: auto;
@@ -837,6 +836,7 @@ body.loaded #preloader {
 
 
 
+
 @media (max-width: 768px) {
   body.no-scroll {
     position: fixed;
@@ -865,7 +865,7 @@ body.loaded #preloader {
     width: 100vw;
     height: 100vh;
     backdrop-filter: blur(8px);
-    background-color: rgba(0, 0, 0, 0.6); /* dim and darken */
+    background-color: rgba(0, 0, 0, 0.308); /* dim and darken */
     display: none;
     align-items: center;
     justify-content: center;
@@ -909,7 +909,7 @@ body.loaded #preloader {
   }
 
   .menu a:hover {
-    color: #c05600;
+    color: #e23838;
   }
   
   /*homepage.html*/
