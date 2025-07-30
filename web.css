@@ -418,7 +418,7 @@ body.loaded #preloader {
   animation: fadeIn 1.5s ease-in-out forwards;
 }
 .product-text h2{
-  color: #e01919;
+  color: #b91111;
 }
 .mainproduct-content {
   flex: 1;
@@ -677,8 +677,8 @@ body.loaded #preloader {
 }
 
 .icon {
-  width: 40px;
-  height: 40px;
+  width: 32px;
+  height: 32px;
   /* margin-left: 30px ; */
   border-radius: 50%;
   cursor: pointer;
