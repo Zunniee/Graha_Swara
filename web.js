@@ -661,3 +661,9 @@ document.addEventListener('DOMContentLoaded', () => {
   // moveToSlide(currentIndex, false);
 
 });
+
+
+
+
+
+//commentar function

@@ -195,7 +195,7 @@ body.loaded #preloader {
 
 
 
-.products, .moments {
+.products, .moments, .abouts {
   margin-top: 1em;
 }
 
@@ -379,13 +379,24 @@ body.loaded #preloader {
 
 
 /* Section titles */
-.products h1, .moments h1 {
+.products h1, .moments h1 , .abouts h1{
   color: #9e1616;
   text-align: center;
   font-size: 2.5rem;
-  margin-bottom: 2rem;
+  margin-bottom: 0;
 }
 
+.abouts p{
+  color: #c22222;
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+.abouts{
+  margin: 3em 0;
+  margin-top: 5em;
+  text-align: center;
+}
 .products, .moments {
   margin: 3em 0;
   text-align: center;
@@ -737,7 +748,6 @@ body.loaded #preloader {
   margin-top: 0.5em;
   display: flex;
   justify-content: space-between;
-  margin-left: 10px;
   margin-right: 10px;
 }
 .about h2{
@@ -950,3 +960,106 @@ body.loaded #preloader {
     height: 100px;
   }
 }
+
+
+
+.consumer-content{
+  flex: 1;
+  overflow: visible;
+  background-image: url(assets/background-products.png);
+  background-size: cover;
+  height: 100%;
+  min-height: 800px;
+  font-size: 18px;
+  word-spacing: 5px;
+}
+
+#consumer-page.consumer-page{
+  height: 100%;
+  min-height: 400px;
+}
+.consumer-text{
+  flex: 1;
+  color: #ad1f1f;
+  font-size: 18px;
+  margin-top: 50px;
+  word-spacing: 5px;
+  text-align: center;
+  opacity: 0;
+  animation: fadeIn 1.5s ease-in-out forwards;
+}
+
+#comment-form{
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  margin: 2em
+}
+.your-name{
+  margin: 2em;
+}
+.input{
+  width: 30%;
+  height: 20%;
+  font-size: 16px;
+  padding: 10px;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+   outline: none;
+  transition: 0.3s;
+  background-color: #f9f9f9;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.input:focus {
+  border-color: #c92a2a;
+  background-color: #fff;
+  box-shadow: 0 0 5px #971919;
+}
+
+.your-message{
+  margin: 2em;
+  min-height: 10vw;
+}
+.message{
+  width: 35%;
+  height: 100%;
+  min-height: 8vw;
+  font-size: 16px;
+  padding: 10px;  
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  outline: none;
+  transition: 0.3s;
+  background-color: #f9f9f9;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.message:focus {
+  border-color: #c92a2a;
+  background-color: #fff;
+  box-shadow: 0 0 5px #971919;
+}
+
+
+.submit{
+  margin: 2em;
+  min-height: 2vw;
+}
+.submit-btn{
+  width: 10%;
+  font-size: 16px;
+  padding: 10px;
+  border-radius: 10px;
+  border: 2px solid #ccc;
+  outline: none;
+  transition: 0.3s;
+  background-color: #e08f69;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.submit-btn :hover{
+  background-color: #ccc;
+  border-color: #690505;
+}
+
