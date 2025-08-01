@@ -217,8 +217,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (prodList) enableDragScroll(prodList);
     if (momList) enableDragScroll(momList);
 
-    
-    // Product page selector functionality
+    // MERGED PRODUCT SELECTOR FUNCTIONALITY
     initializeProductSelector();
 
     // Moment Page Functionality
@@ -227,87 +226,90 @@ document.addEventListener('DOMContentLoaded', () => {
     const prev = document.getElementById('prev');
     const next = document.getElementById('next');
 
-    let slideCount = slides.length;
-    let visibleSlides = 3;
-    let currentIndex = visibleSlides;
-    let slideWidth;
+    if (track && slides.length > 0 && prev && next) {
+      let slideCount = slides.length;
+      let visibleSlides = 3;
+      let currentIndex = visibleSlides;
+      let slideWidth;
 
-    // Clone slides
-    for (let i = 0; i < visibleSlides; i++) {
-      const cloneStart = slides[i].cloneNode(true);
-      const cloneEnd = slides[slideCount - 1 - i].cloneNode(true);
+      // Clone slides
+      for (let i = 0; i < visibleSlides; i++) {
+        const cloneStart = slides[i].cloneNode(true);
+        const cloneEnd = slides[slideCount - 1 - i].cloneNode(true);
 
-      cloneStart.classList.add('clone', 'moment-slide');
-      cloneEnd.classList.add('clone', 'moment-slide');
+        cloneStart.classList.add('clone', 'moment-slide');
+        cloneEnd.classList.add('clone', 'moment-slide');
 
-      track.appendChild(cloneStart);
-      track.insertBefore(cloneEnd, track.firstChild);
-    }
-
-    const allSlides = Array.from(track.children);
-
-    function setSlideWidth() {
-      const slideStyle = getComputedStyle(allSlides[0]);
-      const gap = parseInt(getComputedStyle(track).gap) || 0;
-      slideWidth = allSlides[0].offsetWidth + gap;
-    }
-
-    function moveToSlide(index, animate = true) {
-      if (animate) {
-        track.classList.add('animate');
-      } else {
-        track.classList.remove('animate');
+        track.appendChild(cloneStart);
+        track.insertBefore(cloneEnd, track.firstChild);
       }
 
-      const offset = slideWidth * index;
-      track.style.transform = `translateX(-${offset}px)`;
+      const allSlides = Array.from(track.children);
 
-      updateActiveClass(index);
-    }
-
-    function updateActiveClass(index) {
-      allSlides.forEach(slide => slide.classList.remove('active'));
-      const centerIndex = index + Math.floor(visibleSlides / 2);
-      if (allSlides[centerIndex]) {
-        allSlides[centerIndex].classList.add('active');
-      }
-    }
-
-    function handleLooping() {
-      if (currentIndex >= slideCount + visibleSlides) {
-        currentIndex = visibleSlides;
-        moveToSlide(currentIndex, false); // instant jump
+      function setSlideWidth() {
+        const slideStyle = getComputedStyle(allSlides[0]);
+        const gap = parseInt(getComputedStyle(track).gap) || 0;
+        slideWidth = allSlides[0].offsetWidth + gap;
       }
 
-      if (currentIndex < visibleSlides) {
-        currentIndex = slideCount + visibleSlides - 1;
-        moveToSlide(currentIndex, false); // instant jump
+      function moveToSlide(index, animate = true) {
+        if (animate) {
+          track.classList.add('animate');
+        } else {
+          track.classList.remove('animate');
+        }
+
+        const offset = slideWidth * index;
+        track.style.transform = `translateX(-${offset}px)`;
+
+        updateActiveClass(index);
       }
-    }
 
-    // Navigation
-    next.addEventListener('click', () => {
-      currentIndex++;
-      moveToSlide(currentIndex);
-    });
+      function updateActiveClass(index) {
+        allSlides.forEach(slide => slide.classList.remove('active'));
+        const centerIndex = index + Math.floor(visibleSlides / 2);
+        if (allSlides[centerIndex]) {
+          allSlides[centerIndex].classList.add('active');
+        }
+      }
 
-    prev.addEventListener('click', () => {
-      currentIndex--;
-      moveToSlide(currentIndex);
-    });
+      function handleLooping() {
+        if (currentIndex >= slideCount + visibleSlides) {
+          currentIndex = visibleSlides;
+          moveToSlide(currentIndex, false); // instant jump
+        }
 
-    track.addEventListener('transitionend', handleLooping);
+        if (currentIndex < visibleSlides) {
+          currentIndex = slideCount + visibleSlides - 1;
+          moveToSlide(currentIndex, false); // instant jump
+        }
+      }
 
-    window.addEventListener('resize', () => {
+      // Navigation
+      next.addEventListener('click', () => {
+        currentIndex++;
+        moveToSlide(currentIndex);
+      });
+
+      prev.addEventListener('click', () => {
+        currentIndex--;
+        moveToSlide(currentIndex);
+      });
+
+      track.addEventListener('transitionend', handleLooping);
+
+      window.addEventListener('resize', () => {
+        setSlideWidth();
+        moveToSlide(currentIndex, false);
+      });
+
+      // Init
       setSlideWidth();
       moveToSlide(currentIndex, false);
-    });
-
-    // Init
-    setSlideWidth();
-    moveToSlide(currentIndex, false);
     }
+  }
 
+  // ENHANCED PRODUCT SELECTOR FUNCTION (MERGED FROM BOTH VERSIONS)
   function initializeProductSelector() {
     const productList = document.getElementById('product-list-page');
     const swipeArea = document.getElementById('swipe-area');
@@ -321,27 +323,50 @@ document.addEventListener('DOMContentLoaded', () => {
     let baseTransform = 0;
     let currentTransform = 0;
     
+    // Enhanced dimension calculation
     function calculateDimensions() {
       if (productItems.length > 0) {
+        const container = productList.parentElement;
+        const containerRect = container.getBoundingClientRect();
         const firstItem = productItems[0];
-        const computedStyle = window.getComputedStyle(firstItem);
-        const itemActualWidth = firstItem.offsetWidth;
-        const marginRight = parseInt(computedStyle.marginRight) || 0;
-        const gap = parseInt(computedStyle.gap) || 16;
-        itemWidth = itemActualWidth + Math.max(marginRight, gap);
-        itemCenterOffset = itemActualWidth / 2;
+        const firstItemRect = firstItem.getBoundingClientRect();
+        
+        // Get actual rendered dimensions
+        itemWidth = firstItem.offsetWidth;
+        itemCenterOffset = itemWidth / 2;
+        
+        // Calculate gap between items
+        if (productItems.length > 1) {
+          const secondItem = productItems[1];
+          const secondItemRect = secondItem.getBoundingClientRect();
+          const actualGap = secondItemRect.left - firstItemRect.right;
+          itemWidth += actualGap;
+        } else {
+          // Fallback to CSS gap if only one item
+          const computedStyle = window.getComputedStyle(productList);
+          const gap = parseInt(computedStyle.gap) || 16;
+          itemWidth += gap;
+        }
       }
     }
 
+    // Enhanced transform calculation
     function calculateBaseTransform() {
       const container = productList.parentElement;
       const containerWidth = container.offsetWidth;
       const centerPosition = containerWidth / 2;
-      const itemCenterPosition = (currentIndex * itemWidth) + itemCenterOffset;
-      baseTransform = centerPosition - itemCenterPosition;
+      
+      // More accurate centering calculation
+      const itemRect = productItems[currentIndex].getBoundingClientRect();
+      const containerRect = productList.parentElement.getBoundingClientRect();
+      const itemCenter = itemRect.left + (itemRect.width / 2);
+      const containerCenter = containerRect.left + (containerRect.width / 2);
+      const offset = containerCenter - itemCenter;
+      baseTransform = currentTransform + offset;
       currentTransform = baseTransform;
     }
 
+    // Update displayed product info
     function updateDisplay() {
       const activeItem = productItems[currentIndex];
       const displayedImage = document.getElementById('displayed-image');
@@ -355,6 +380,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
+    // Update selector visual state
     function updateSelector(smooth = true) {
       productItems.forEach((item, index) => {
         item.classList.toggle('active', index === currentIndex);
@@ -372,6 +398,7 @@ document.addEventListener('DOMContentLoaded', () => {
       currentTransform = baseTransform;
     }
 
+    // Enhanced snapping functionality
     function snapToNearestItem() {
       const container = productList.parentElement;
       const containerWidth = container.offsetWidth;
@@ -381,9 +408,10 @@ document.addEventListener('DOMContentLoaded', () => {
       let minDistance = Infinity;
       
       for (let i = 0; i < productItems.length; i++) {
-        const itemCenterPosition = (i * itemWidth) + itemCenterOffset;
-        const itemScreenPosition = itemCenterPosition + currentTransform;
-        const distanceFromCenter = Math.abs(itemScreenPosition - centerPosition);
+        const itemRect = productItems[i].getBoundingClientRect();
+        const containerRect = container.getBoundingClientRect();
+        const itemCenterInContainer = itemRect.left - containerRect.left + (itemRect.width / 2);
+        const distanceFromCenter = Math.abs(itemCenterInContainer - centerPosition);
         
         if (distanceFromCenter < minDistance) {
           minDistance = distanceFromCenter;
@@ -399,6 +427,7 @@ document.addEventListener('DOMContentLoaded', () => {
       updateSelector(true);
     }
 
+    // Navigate to specific product
     function goToProduct(index) {
       if (index >= 0 && index < productItems.length) {
         currentIndex = index;
@@ -407,32 +436,45 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
-    // Initialize - ensure proper centering on load
+    // Enhanced initialization with multiple attempts
     calculateDimensions();
     updateDisplay();
-    // Use multiple timeouts to ensure proper centering
-    setTimeout(() => {
-      calculateDimensions();
-      updateSelector(false);
-    }, 50);
     
-    setTimeout(() => {
+    const initializeSelector = () => {
       calculateDimensions();
       updateSelector(false);
-    }, 200);
+    };
     
-    setTimeout(() => {
-      calculateDimensions();
-      updateSelector(false);
-    }, 500);
+    // Multiple initialization attempts to ensure proper centering
+    requestAnimationFrame(() => {
+      initializeSelector();
+      
+      setTimeout(() => {
+        initializeSelector();
+      }, 100);
+      
+      setTimeout(() => {
+        initializeSelector();
+      }, 300);
+      
+      setTimeout(() => {
+        initializeSelector();
+      }, 600);
+    });
 
-    // Enhanced drag/swipe handling with smooth animations
+    // Enhanced drag/swipe handling with device-specific optimization
     let isDragging = false;
     let startX = 0;
     let startY = 0;
     let lastX = 0;
     let hasMoved = false;
     let isHorizontalSwipe = false;
+    let velocity = 0;
+    let lastMoveTime = 0;
+    let startTime = 0;
+
+    const isTouchDevice = 'ontouchstart' in window;
+    const isMobile = window.innerWidth <= 768;
 
     const handleStart = (clientX, clientY) => {
       isDragging = true;
@@ -441,25 +483,44 @@ document.addEventListener('DOMContentLoaded', () => {
       startX = clientX;
       startY = clientY;
       lastX = clientX;
+      velocity = 0;
+      lastMoveTime = Date.now();
+      startTime = Date.now();
       productList.style.transition = 'none';
-      productList.style.cursor = 'grabbing';
-      swipeArea.style.cursor = 'grabbing';
+      if (!isMobile) {
+        productList.style.cursor = 'grabbing';
+        swipeArea.style.cursor = 'grabbing';
+      }
     };
 
     const handleEnd = () => {
       if (!isDragging) return;
       isDragging = false;
       
-      productList.style.cursor = 'grab';
-      swipeArea.style.cursor = 'grab';
+      if (!isMobile) {
+        productList.style.cursor = 'grab';
+        swipeArea.style.cursor = 'grab';
+      }
       
       if (hasMoved && isHorizontalSwipe) {
-        // Reduced sensitivity - require more movement
         const deltaX = lastX - startX;
-        const velocity = Math.abs(deltaX) / 150; // Increased from 100 to 150
-        const threshold = itemWidth * 0.4; // Increased from 0.25 to 0.4
+        const deltaTime = Date.now() - startTime;
+        const avgVelocity = Math.abs(deltaX) / deltaTime;
         
-        if (Math.abs(deltaX) > threshold || velocity > 3) { // Increased velocity threshold
+        // Device-specific sensitivity thresholds
+        let threshold, velocityThreshold;
+        if (isMobile && isTouchDevice) {
+          threshold = itemWidth * 0.15;
+          velocityThreshold = 0.2;
+        } else if (isTouchDevice) {
+          threshold = itemWidth * 0.2;
+          velocityThreshold = 0.3;
+        } else {
+          threshold = itemWidth * 0.35;
+          velocityThreshold = 0.8;
+        }
+        
+        if (Math.abs(deltaX) > threshold || avgVelocity > velocityThreshold) {
           if (deltaX > 0 && currentIndex > 0) {
             currentIndex--;
           } else if (deltaX < 0 && currentIndex < productItems.length - 1) {
@@ -477,26 +538,39 @@ document.addEventListener('DOMContentLoaded', () => {
       
       const deltaX = clientX - startX;
       const deltaY = clientY - startY;
+      const currentTime = Date.now();
+      const deltaTime = currentTime - lastMoveTime;
       
-      if (!hasMoved && (Math.abs(deltaX) > 5 || Math.abs(deltaY) > 5)) {
+      // Enhanced movement detection for mobile
+      const moveThreshold = isMobile ? 5 : 8;
+      if (!hasMoved && (Math.abs(deltaX) > moveThreshold || Math.abs(deltaY) > moveThreshold)) {
         hasMoved = true;
-        isHorizontalSwipe = Math.abs(deltaX) > Math.abs(deltaY);
+        const horizontalRatio = isMobile ? 1.2 : 1.5;
+        isHorizontalSwipe = Math.abs(deltaX) > Math.abs(deltaY) * horizontalRatio;
       }
       
       if (hasMoved && isHorizontalSwipe) {
+        // Calculate velocity
+        if (deltaTime > 0) {
+          velocity = (clientX - lastX) / deltaTime;
+        }
+        
         let newTransform = baseTransform + deltaX;
         
-        // Add resistance at edges
+        // Adaptive resistance based on device type
         const maxIndex = productItems.length - 1;
+        let resistance = isMobile ? 0.15 : (isTouchDevice ? 0.2 : 0.3);
+        
         if (currentIndex === 0 && deltaX > 0) {
-          newTransform = baseTransform + (deltaX * 0.3);
+          newTransform = baseTransform + (deltaX * resistance);
         } else if (currentIndex === maxIndex && deltaX < 0) {
-          newTransform = baseTransform + (deltaX * 0.3);
+          newTransform = baseTransform + (deltaX * resistance);
         }
         
         currentTransform = newTransform;
         productList.style.transform = `translateX(${newTransform}px)`;
         lastX = clientX;
+        lastMoveTime = currentTime;
       }
     };
 
@@ -504,7 +578,7 @@ document.addEventListener('DOMContentLoaded', () => {
     productList.style.cursor = 'grab';
     swipeArea.style.cursor = 'grab';
 
-    // Mouse events
+    // Mouse events (optimized for trackpad)
     swipeArea.addEventListener('mousedown', (e) => {
       e.preventDefault();
       handleStart(e.clientX, e.clientY);
@@ -520,150 +594,122 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    // Touch events
+    // Touch events (optimized for mobile)
     swipeArea.addEventListener('touchstart', (e) => {
       const touch = e.touches[0];
       handleStart(touch.clientX, touch.clientY);
-    }, { passive: true });
+    }, { passive: false });
 
     document.addEventListener('touchend', handleEnd, { passive: true });
     document.addEventListener('touchcancel', handleEnd, { passive: true });
 
     swipeArea.addEventListener('touchmove', (e) => {
-      if (isDragging && isHorizontalSwipe) {
-        e.preventDefault();
-      }
-      if (e.touches.length > 0) {
-        const touch = e.touches[0];
-        handleMove(touch.clientX, touch.clientY);
-      }
-    });
-
-    // Trackpad/wheel support with reduced sensitivity
-    swipeArea.addEventListener('wheel', (e) => {
-      if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
-        e.preventDefault();
-        
-        // Reduced sensitivity - require more deltaX movement
-        if (e.deltaX > 30 && currentIndex < productItems.length - 1) {
-          currentIndex++;
-          updateDisplay();
-          updateSelector();
-        } else if (e.deltaX < -30 && currentIndex > 0) {
-          currentIndex--;
-          updateDisplay();
-          updateSelector();
+      if (isDragging) {
+        if (isHorizontalSwipe) {
+          e.preventDefault();
+        }
+        if (e.touches.length > 0) {
+          const touch = e.touches[0];
+          handleMove(touch.clientX, touch.clientY);
         }
       }
     }, { passive: false });
 
-    // Click handlers
+    // Desktop-only trackpad/wheel support
+    if (!isMobile) {
+      let accumulatedDelta = 0;
+      let wheelCooldown = false;
+
+      swipeArea.addEventListener('wheel', (e) => {
+        if (wheelCooldown || Math.abs(e.deltaX) < Math.abs(e.deltaY)) return;
+      
+        e.preventDefault();
+      
+        accumulatedDelta += e.deltaX;
+      
+        const threshold = 40;
+      
+        if (accumulatedDelta > threshold && currentIndex < productItems.length - 1) {
+          currentIndex++;
+          updateDisplay();
+          updateSelector();
+          accumulatedDelta = 0;
+          wheelCooldown = true;
+          setTimeout(() => wheelCooldown = false, 250);
+        } else if (accumulatedDelta < -threshold && currentIndex > 0) {
+          currentIndex--;
+          updateDisplay();
+          updateSelector();
+          accumulatedDelta = 0;
+          wheelCooldown = true;
+          setTimeout(() => wheelCooldown = false, 250);
+        }
+      }, { passive: false });
+    }
+
+    // Enhanced click/tap handlers
     productItems.forEach((item, index) => {
+      // For mobile: use touchend for better accuracy
+      if (isMobile) {
+        item.addEventListener('touchend', (e) => {
+          if (!hasMoved) {
+            e.preventDefault();
+            e.stopPropagation();
+            goToProduct(index);
+          }
+        }, { passive: false });
+      }
+      
+      // For desktop: use click
       item.addEventListener('click', (e) => {
-        if (!hasMoved) {
+        if (!isMobile && !hasMoved) {
+          e.preventDefault();
           goToProduct(index);
         }
       });
     });
 
-    // Resize handler
-    window.addEventListener('resize', () => {
+    // Enhanced resize and orientation handling
+    let resizeTimeout;
+
+    function onResizeOrOrientation() {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(() => {
+        calculateDimensions();
+        updateSelector(false);
+      }, 300);
+    }
+
+    window.addEventListener('resize', onResizeOrOrientation);
+    window.addEventListener('orientationchange', onResizeOrOrientation);
+    
+    // Realign when window finishes loading
+    window.addEventListener('load', () => {
       setTimeout(() => {
         calculateDimensions();
         updateSelector(false);
       }, 100);
     });
+
+    // Recalculate on visibility change
+    document.addEventListener('visibilitychange', () => {
+      if (document.visibilityState === 'visible') {
+        setTimeout(() => {
+          calculateDimensions();
+          updateSelector(false);
+        }, 100);
+      }
+    });
+
+    // Watch for DOM changes in product list
+    const observer = new MutationObserver(() => {
+      calculateDimensions();
+      updateSelector(false);
+    });
+
+    observer.observe(productList, {
+      childList: true,
+      subtree: true,
+    });
   }
-
-  // const track = document.querySelector('.moment-carousel-track');
-  // const slides = Array.from(track.children);
-  // const prev = document.getElementById('prev');
-  // const next = document.getElementById('next');
-
-  // let slideCount = slides.length;
-  // let visibleSlides = 3;
-  // let currentIndex = visibleSlides;
-  // let slideWidth;
-
-  // // Clone slides
-  // for (let i = 0; i < visibleSlides; i++) {
-  //   const cloneStart = slides[i].cloneNode(true);
-  //   const cloneEnd = slides[slideCount - 1 - i].cloneNode(true);
-
-  //   cloneStart.classList.add('clone', 'moment-slide');
-  //   cloneEnd.classList.add('clone', 'moment-slide');
-
-  //   track.appendChild(cloneStart);
-  //   track.insertBefore(cloneEnd, track.firstChild);
-  // }
-
-  // const allSlides = Array.from(track.children);
-
-  // function setSlideWidth() {
-  //   const slideStyle = getComputedStyle(allSlides[0]);
-  //   const gap = parseInt(getComputedStyle(track).gap) || 0;
-  //   slideWidth = allSlides[0].offsetWidth + gap;
-  // }
-
-  // function moveToSlide(index, animate = true) {
-  //   if (animate) {
-  //     track.classList.add('animate');
-  //   } else {
-  //     track.classList.remove('animate');
-  //   }
-
-  //   const offset = slideWidth * index;
-  //   track.style.transform = `translateX(-${offset}px)`;
-
-  //   updateActiveClass(index);
-  // }
-
-  // function updateActiveClass(index) {
-  //   allSlides.forEach(slide => slide.classList.remove('active'));
-  //   const centerIndex = index + Math.floor(visibleSlides / 2);
-  //   if (allSlides[centerIndex]) {
-  //     allSlides[centerIndex].classList.add('active');
-  //   }
-  // }
-
-  // function handleLooping() {
-  //   if (currentIndex >= slideCount + visibleSlides) {
-  //     currentIndex = visibleSlides;
-  //     moveToSlide(currentIndex, false); // instant jump
-  //   }
-
-  //   if (currentIndex < visibleSlides) {
-  //     currentIndex = slideCount + visibleSlides - 1;
-  //     moveToSlide(currentIndex, false); // instant jump
-  //   }
-  // }
-
-  // // Navigation
-  // next.addEventListener('click', () => {
-  //   currentIndex++;
-  //   moveToSlide(currentIndex);
-  // });
-
-  // prev.addEventListener('click', () => {
-  //   currentIndex--;
-  //   moveToSlide(currentIndex);
-  // });
-
-  // track.addEventListener('transitionend', handleLooping);
-
-  // window.addEventListener('resize', () => {
-  //   setSlideWidth();
-  //   moveToSlide(currentIndex, false);
-  // });
-
-  // // Init
-  // setSlideWidth();
-  // moveToSlide(currentIndex, false);
-
 });
-
-
-
-
-
-//commentar function
