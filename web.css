@@ -8,7 +8,6 @@
 html, body {
   width: 100%;
   overflow-x: hidden; 
-  overscroll-behavior-y: none;
   margin: 0;
   padding: 0;
   padding-top: 40px;
@@ -22,7 +21,7 @@ html, body {
 }
 
 .body{
-  max-width: 100%;
+  max-width: 100vw;
 }
 
 /* Show preloader by default with hardware acceleration */
@@ -219,9 +218,8 @@ body.loaded #preloader {
 
 /* Optimized scrolling with hardware acceleration */
 .product-list, .moment-list {
-  justify-content: center;
   display: flex;
-  overflow-x: visible;
+  overflow-x: auto;
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
   gap: 1em;
@@ -232,52 +230,28 @@ body.loaded #preloader {
   transform: translateZ(0);
   cursor: grab;
 }
-.moment-list{
-  justify-content: center;
-}
+
 .product-list:active, .moment-list:active {
   cursor: grabbing;
 }
 
-.product-item {
+.product-item, .moment-item {
+  flex: 0 0 auto;
   scroll-snap-align: start;
   will-change: transform;
   user-select: none;
 }
 
-.product-list::-webkit-scrollbar, .moment-list::-webkit-scrollbar {
-  display: none; /* Chrome, Safari */
-}
-
-.product-item img {
-  display: block;
+.product-item img, .moment-item img {
   width: 100%;
-  max-width: 480px;
-  justify-content: center;
-  max-height: 280px; 
-  height: auto;
+  height: 45vh; /* fixed height */
   object-fit: cover;
   border-radius: 10px;
   pointer-events: none; 
 }
 
-.moment-item {
-  display: flex;
-  justify-content: center; 
-  align-items: center;  
-}
-
-.moment-item img {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  max-height: 300px;
-  max-width: 100%;
-  height: auto;
-  object-fit: cover;
-  border-radius: 10px;
-  pointer-events: none;
-  margin-left: 400 px;
+.product-list::-webkit-scrollbar, .moment-list::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
 }
 
 .about-layout {
@@ -333,6 +307,7 @@ body.loaded #preloader {
   margin-top: 1em;
   transition: all 0.3s ease;
   border: 2px solid #ff0b0b;
+  margin-bottom: 1.5em;
 }
 
 .btn:hover {
@@ -347,7 +322,7 @@ body.loaded #preloader {
   color: #9e1616;
   text-align: center;
   font-size: 2.5rem;
-  margin-bottom: 0;
+  margin-bottom: 0.5em;
 }
 
 .abouts p{
@@ -986,6 +961,14 @@ body.loaded #preloader {
   /*homepage.html*/
   .image-stack {
     width: 85vw;
+  }
+
+  .product-item, .moment-item {
+    width: 100%;
+  }
+
+  .product-item img, .moment-item img {
+    height: calc(100% * (3 / 4));
   }
 
   /*about.html*/
