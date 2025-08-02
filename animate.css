@@ -341,21 +341,22 @@ body.loaded .tongkonan {
   .image-stack{
     margin:   40px auto 0;
   }
-  .abouts{
-    margin-top: 320px;
-  }
+
   .moment-item img{
     width: 100%;
     max-width: 300px;
     margin-right: 10px;
   }
+
   .logo{
     margin: 0 ;
   }
+
   .about-layout{
     background-size: cover;
     background-position: right;
   }
+  
   .about p{
     width: 450px;
   }

@@ -336,7 +336,7 @@ body.loaded #preloader {
 }
 
 .abouts{
-  margin: 3em 0;
+  margin: 0 1em;
   margin-top: 5em;
   text-align: center;
 }
@@ -512,20 +512,28 @@ body.loaded #preloader {
   background-image: url(assets/background-moment1.png);
   background-size: cover;
   color: #7D0A0A;
-  height: 100%;
+  width: 100%;
   min-height: 700px;
   font-size: 18px;
   word-spacing: 5px;
 }
 
-.mainhome-content {
-  background-image: url(assets/background-homepage.png);
+.mainhome-contenttop {
+  background-image: url(assets/background-homepagetop.webp);
   background-attachment: scroll;
   background-size: cover;
-  min-height: 100vh;
+  min-height: 110vh;
   background-repeat: no-repeat;
   background-position: center;
-  background-position-y: -70px ;
+}
+
+.mainhome-contentbottom {
+  background-image: url(assets/background-homepagebottom.webp);
+  background-attachment: scroll;
+  background-size: cover;
+  min-height: 110vh;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 /* Footer styles */
@@ -1081,12 +1089,6 @@ body.loaded #preloader {
     background-color: #fff;
     border-color: #c92a2a;
     box-shadow: 0 0 5px #971919;
-  }
-}
-
-@media (max-width: 480px) {
-  .homepage-main-content {
-    margin-top: 4em;
   }
 }
 
