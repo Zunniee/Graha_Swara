@@ -187,7 +187,7 @@ body.loaded #preloader {
 /*homepage.html start*/
 .homepage-main-content {
   flex-grow: 1;
-  padding: 2em;
+  padding: 1em;
 }
 
 .animated {
@@ -273,6 +273,7 @@ body.loaded #preloader {
     transform: translateX(-50px);
     opacity: 0;
     animation: slideIn 1.5s ease forwards;
+    margin-left: 2em;
   }
 .about-logo img {
   width: 100%;
@@ -287,10 +288,13 @@ body.loaded #preloader {
   transform: translateX(50px);
   opacity: 0;
   animation: slideIn 2s ease forwards;
+  margin-right: 2em;
 }
+
 .about-text h1{
   font-size: 36px;
 }
+
 .about-text p{
   text-decoration: solid;
 }
@@ -1077,6 +1081,12 @@ body.loaded #preloader {
     background-color: #fff;
     border-color: #c92a2a;
     box-shadow: 0 0 5px #971919;
+  }
+}
+
+@media (max-width: 480px) {
+  .homepage-main-content {
+    margin-top: 4em;
   }
 }
 
