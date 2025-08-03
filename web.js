@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (pageContent) layoutContainer.appendChild(pageContent.content.cloneNode(true));
       if (footer) layoutContainer.appendChild(footer);
 
-      // ✅ Inject favicon directly into <head>
+      //  Inject favicon directly into <head>
       const faviconLink = document.createElement('link');
       faviconLink.rel = 'icon';
       faviconLink.type = 'image/webp';
